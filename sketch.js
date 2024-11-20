@@ -1,27 +1,27 @@
 let sprayColor;
-let alphaValue = 200; // Default transparency
-let capturer; // CCapture instance
-let recording = false; // Flag to check if recording
+let alphaValue = 200; 
+let capturer; 
+let recording = false; 
 
 function setup() {
   createCanvas(800, 600);
   background(240);
   sprayColor = color(0, alphaValue);
-  capturer = new CCapture({ format: 'webm', framerate: 30 }); // Setup CCapture
+  capturer = new CCapture({ format: 'webm', framerate: 30 }); 
 }
 
 function draw() {
   if (mouseIsPressed) {
-    spray(mouseX, mouseY); // Draw spray effect
+    spray(mouseX, mouseY); 
   }
 
-  // If recording, capture each frame
+  
   if (recording) {
     capturer.capture(canvas);
   }
 }
 
-// Spray effect function
+
 function spray(x, y) {
   noStroke();
   fill(sprayColor);
@@ -32,17 +32,17 @@ function spray(x, y) {
   }
 }
 
-// Toggle recording with key presses
+
 function keyPressed() {
   if (key === 's' || key === 'S') {
     if (!recording) {
       recording = true;
-      capturer.start(); // Start recording
+      capturer.start(); 
       console.log('Recording started');
     } else {
       recording = false;
-      capturer.stop(); // Stop recording
-      capturer.save(); // Save the video
+      capturer.stop(); 
+      capturer.save(); 
       console.log('Recording saved');
     }
   }
